@@ -23,7 +23,7 @@ after_initialize do
       if SiteSetting.signatures_advanced_mode then
         object.user.custom_fields['signature_cooked'] if object.user
       else
-        object.user.custom_fields['signature_url'] if object.user
+        user.user_profile.bio_raw if object.user
       end
     }
 
