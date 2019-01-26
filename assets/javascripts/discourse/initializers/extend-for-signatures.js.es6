@@ -29,9 +29,14 @@ function attachSignature(api, siteSettings) {
         } else {
           return [
             dec.h("hr"),
-            dec.h("img.signature-img", {
-              attributes: { src: attrs.user_signature }
-            })
+            dec.h(
+              "div",
+              new RawHtml({
+                html: `<div class='user-signature'>${
+                  attrs.user_signature
+                }</div>`
+              })
+            )
           ];
         }
       }
