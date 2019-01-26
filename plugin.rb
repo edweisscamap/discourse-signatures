@@ -18,10 +18,15 @@ after_initialize do
 
   register_editable_user_custom_field [:see_signatures, :signature_url, :signature_raw]
 
-  if SiteSetting.signatures_enabled then
+if SiteSetting.signatures_enabled then
     add_to_serializer(:post, :user_signature, false) {
-       user.user_profile.bio_raw if user
+      if SiteSetting.signatures_advanced_mode then
+        object.user.custom_fields['signature_cooked'] if object.user
+      else
+        object.user.custom_fields['signature_url'] if object.user
+      end
     }
+
 
     # I guess this should be the default @ discourse. PR maybe?
     add_to_serializer(:user, :custom_fields, false) {
