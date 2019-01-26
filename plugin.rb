@@ -23,7 +23,7 @@ if SiteSetting.signatures_enabled then
       if SiteSetting.signatures_advanced_mode then
         object.user.custom_fields['signature_cooked'] if object.user
       else
-        user.user_profile.bio_raw if object.user
+        object.user.user_profile.bio_raw if object.user
       end
     }
 
